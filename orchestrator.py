@@ -2,6 +2,7 @@ from agents.scraper_agent import ScraperAgent
 from agents.rag_agent import RagAgent
 from agents.search_agent import SearchAgent
 from utils.logger import get_logger
+from agents.joke_agent import JokeAgent
 
 logger = get_logger("orchestrator")
 
@@ -9,6 +10,7 @@ AGENTS = {
     "scraper": ScraperAgent(),
     "rag": RagAgent(),
     "search": SearchAgent(),
+    "joke": JokeAgent(),
 }
 
 def handle_request(request: dict):
@@ -23,7 +25,7 @@ def handle_request(request: dict):
 
     try:
         result = agent.run(params)
-        logger.debug(f"Résultat de {function} : {result}")
+        #logger.debug(f"Résultat de {function} : {result}")
         return {"function": function, "response": result}
     except Exception as e:
         logger.exception("Erreur pendant l'exécution de l'agent")
